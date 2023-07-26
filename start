@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# script set in background
+setsid /opt/setup.sh > /root/log  2>&1   &
+
+# run systemd
+exec /usr/sbin/init

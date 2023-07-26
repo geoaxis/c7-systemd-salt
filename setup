@@ -1,0 +1,19 @@
+#!/bin/bash
+echo $(date +"%Y-%m-%dT%H:%M:%S%z") "Starting the salt stack in 45s" 
+sleep 45
+ 
+
+systemctl enable salt-master && systemctl start salt-master
+systemctl enable salt-minion && systemctl start salt-minion
+systemctl enable salt-syndic && systemctl start salt-syndic
+systemctl enable salt-api && systemctl start salt-api
+
+
+echo $(date +"%Y-%m-%dT%H:%M:%S%z") "Started salt stack" 
+
+sleep 45
+echo $(date +"%Y-%m-%dT%H:%M:%S%z") "Calling key after 45 seconds"
+
+salt-key -y -a rebel_1
+
+echo $(date +"%Y-%m-%dT%H:%M:%S%z") "enrolled key"
